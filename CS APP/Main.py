@@ -181,6 +181,9 @@ def main_ui():
 
     librar = tk.Button(root, text ="Sickness Library", command = Symptoms, width=57,height=2, font=('times', 20, 'bold'))
     canvas.create_window(120,150,window=librar)
+
+    logout = tk.Button(root, text =" Logout ", command = Exit, width=57,height=2, font=('times', 20, 'bold'))
+    canvas.create_window(64,242,window=logout)
     #---------------btnCanvas------------------------------------------
     canvappsearch = tk.Canvas(root, width="750",height="570",relief = tk.FLAT, background="#C8EBE9")
     canvapp.create_window(710,545,window=canvappsearch)
@@ -225,7 +228,12 @@ def Symptoms():
     quote = """M.H.M.S Sickness Library."""
     textfieldsy.insert(tk.END, quote)
     #----------------------------end-----------------------------------
-
+def Exit():
+    MsgBox = ctypes.windll.user32.MessageBoxW(0, "are you sure?", "Logging Out", 4)
+    if MsgBox == 6:
+        sys.exit()
+    else:
+        pass
 #---------------btnFunctionsEnd------------------------------------------
 
 def Menus():
