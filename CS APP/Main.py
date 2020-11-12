@@ -188,7 +188,7 @@ def main_ui():
 #---------------btnFunctionsStart------------------------------------------
 
 def Search():
-    searchsymp = tk.Label(root, text="Type Symptoms Here", background = "#82C8C4", width="105",height="5")
+    searchsymp = tk.Label(root, text="Type Symptoms Here", background = "#82C8C4", width="105",height="5", font=('times', 10, 'bold'))
     canvapp.create_window(710,310,window=searchsymp)
     username = tk.Entry(root)
     canvapp.create_window(710,330,window=username)
@@ -205,23 +205,25 @@ def Search():
     scrollvar.config(command=textfield.yview)
     textfield.config(yscrollcommand=scrollvar.set)
     #----------------this part read and show output--------------------
-    quote = """Medical Health Monitoring System."""
+    quote = """M.H.M.S Search Symptoms."""
     textfield.insert(tk.END, quote)
     #----------------------------end-----------------------------------
 def Symptoms():
     canvappsymp = tk.Canvas(root, width="750",height="570",relief = tk.FLAT, background="#C8EBE9")
     canvapp.create_window(710,545,window=canvappsymp)
 
+    labelsym = tk.Label(root,font=('times', 10, 'bold'), bg='#82a8C4', text="Sickness Library", width="105",height="2")
+    canvappsymp.create_window(377,30,window=labelsym)
     #----------------this part read and show output--------------------
     scrollsymp = tk.Scrollbar(root)
-    textfieldsy = tk.Text(root, height=28, width=92)
-    canvappsymp.create_window(710,580,window=scrollsymp)
-    canvappsymp.create_window(710,580,window=textfieldsy)
+    textfieldsy = tk.Text(root, height=32, width=92)
+    canvappsymp.create_window(377,310,window=scrollsymp)
+    canvappsymp.create_window(377,310,window=textfieldsy)
     scrollsymp.config(command=textfieldsy.yview)
     textfieldsy.config(yscrollcommand=scrollsymp.set)
 
-    quote = """Medical Health Monitoring System."""
-    textfield.insert(tk.END, quote)
+    quote = """M.H.M.S Sickness Library."""
+    textfieldsy.insert(tk.END, quote)
     #----------------------------end-----------------------------------
 
 #---------------btnFunctionsEnd------------------------------------------
@@ -245,40 +247,44 @@ def About():
     ctypes.windll.user32.MessageBoxW(0, "This app is for finding sickness by searching symptoms.", "About", 0)
 
 #--------------------------login/FunctionsEnd----------------------------
-
-#--------------------------login/begin----------------------------
-logintxt = tk.Label(root, text="  Log-In  ", font=("Arial", 26), background = "#55B9B3")
-canvas.create_window(520,290,window=logintxt)
-
-usn = tk.Label(root, text="           Username           ", background = "#82C8C4")
-canvas.create_window(520,320,window=usn)
-username = tk.Entry(root)
-canvas.create_window(520,340,window=username)
-
-psw = tk.Label(root, text="            Password           ", background = "#82C8C4")
-canvas.create_window(520,390,window=psw)
-password = tk.Entry(root, show="*")
-canvas.create_window(520,410,window=password)
-
-login = tk.Button(root, text ="  Login  ", command = logincommand)
-canvas.create_window(470,460,window=login)
-
-register = tk.Button(root, text ="Register", command =  registerbtn)
-canvas.create_window(570,460,window=register)
-#--------------------------login/end----------------------------
-
-
-
-clock = tk.Label(root,font=('times', 20, 'bold'), bg='#C8EBE9')
-canvas.create_window(520,520,window=clock)
-
-footer = tk.Label(root, bg='#82C8C4', text="Made by TikTokDuo")
-footer.pack(fill=tk.BOTH, expand=1)
-
 def ticks():
     now = datetime.now().strftime(' Date: %Y-%m-%d \n Time: %H:%M:%S')
     clock.config(text=now)
     clock.after(200, ticks)
-ticks()
+#--------------------------login/begin----------------------------
+def start():
+    global clock
+    global username
+    global password
+    logintxt = tk.Label(root, text="  Log-In  ", font=("Arial", 26), background = "#55B9B3")
+    canvas.create_window(520,290,window=logintxt)
 
+    usn = tk.Label(root, text="           Username           ", background = "#82C8C4")
+    canvas.create_window(520,320,window=usn)
+    username = tk.Entry(root)
+    canvas.create_window(520,340,window=username)
+
+    psw = tk.Label(root, text="            Password           ", background = "#82C8C4")
+    canvas.create_window(520,390,window=psw)
+    password = tk.Entry(root, show="*")
+    canvas.create_window(520,410,window=password)
+
+    login = tk.Button(root, text ="  Login  ", command = logincommand)
+    canvas.create_window(470,460,window=login)
+
+    register = tk.Button(root, text ="Register", command =  registerbtn)
+    canvas.create_window(570,460,window=register)
+#--------------------------login/end----------------------------
+
+
+
+    clock = tk.Label(root,font=('times', 20, 'bold'), bg='#C8EBE9')
+    canvas.create_window(520,520,window=clock)
+
+    footer = tk.Label(root, bg='#82C8C4', text="Made by TikTokDuo")
+    footer.pack(fill=tk.BOTH, expand=1)
+    ticks()
+
+
+start()
 root.mainloop()
