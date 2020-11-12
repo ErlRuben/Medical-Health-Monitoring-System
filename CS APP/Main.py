@@ -157,30 +157,75 @@ def registercommand():
                     ctypes.windll.user32.MessageBoxW(0, "Done! Your Registered", "Register", 0)
                     canvasRegister.destroy();
                     return
+def newtimer():
+    noww = datetime.now().strftime('   Date: %Y-%m-%d      Time: %H:%M:%S')
+    clockk.config(text=noww)
+    clockk.after(200, newtimer)
 def main_ui():
+    global clockk
+    global canvapp
     Menus()
-    
     #---------------btnCanvas------------------------------------------
     canvapp = tk.Canvas(root, width="1220",height="1220",relief = tk.FLAT, bg='#82a8C4')
     canvas.create_window(520,370,window=canvapp)
 
-    clock = tk.Label(root,font=('times', 10, 'bold'), bg='#82a8C4')
-    canvas.create_window(890,-3,window=clock)
-    now = datetime.now().strftime('   Date: %Y-%m-%d      Time: %H:%M:%S')
-    clock.config(text=now)
-    clock.after(200, ticks)
+    clockk = tk.Label(root,font=('times', 10, 'bold'), bg='#82a8C4')
+    canvas.create_window(890,-3,window=clockk)
+    newtimer()
 
     nameapp = tk.Label(root,font=('times', 10, 'bold'), bg='#82a8C4', text="Medical Health Monitoring System")
     canvas.create_window(120,-3,window=nameapp)
 
-    search = tk.Button(root, text =" Search ", command = "", width=57,height=2, font=('times', 20, 'bold'))
+    search = tk.Button(root, text =" Search ", command = Search, width=57,height=2, font=('times', 20, 'bold'))
     canvas.create_window(64,58,window=search)
 
-    librar = tk.Button(root, text ="Sickness Library", command = "", width=57,height=2, font=('times', 20, 'bold'))
+    librar = tk.Button(root, text ="Sickness Library", command = Symptoms, width=57,height=2, font=('times', 20, 'bold'))
     canvas.create_window(120,150,window=librar)
     #---------------btnCanvas------------------------------------------
     canvappsearch = tk.Canvas(root, width="750",height="570",relief = tk.FLAT, background="#C8EBE9")
     canvapp.create_window(710,545,window=canvappsearch)
+
+#---------------btnFunctionsStart------------------------------------------
+
+def Search():
+    searchsymp = tk.Label(root, text="Type Symptoms Here", background = "#82C8C4", width="105",height="5")
+    canvapp.create_window(710,310,window=searchsymp)
+    username = tk.Entry(root)
+    canvapp.create_window(710,330,window=username)
+    searchbtn = tk.Button(root, text ="search", command = "", font=('times', 7, 'bold'))
+    canvas.create_window(705,88,window=searchbtn)
+    
+    scrollvar = tk.Scrollbar(root)
+    textfield = tk.Text(root, height=28, width=92)
+    canvapp.create_window(710,580,window=scrollvar)
+    canvapp.create_window(710,580,window=textfield)
+
+    # canvas.create_window(10,805,window=scrollvar, side=tk.RIGHT, fill=tk.Y)
+    # canvas.create_window(10,805,window=textfield, side=tk.LEFT, fill=tk.Y)
+    scrollvar.config(command=textfield.yview)
+    textfield.config(yscrollcommand=scrollvar.set)
+    #----------------this part read and show output--------------------
+    quote = """Medical Health Monitoring System."""
+    textfield.insert(tk.END, quote)
+    #----------------------------end-----------------------------------
+def Symptoms():
+    canvappsymp = tk.Canvas(root, width="750",height="570",relief = tk.FLAT, background="#C8EBE9")
+    canvapp.create_window(710,545,window=canvappsymp)
+
+    #----------------this part read and show output--------------------
+    scrollsymp = tk.Scrollbar(root)
+    textfieldsy = tk.Text(root, height=28, width=92)
+    canvappsymp.create_window(710,580,window=scrollsymp)
+    canvappsymp.create_window(710,580,window=textfieldsy)
+    scrollsymp.config(command=textfieldsy.yview)
+    textfieldsy.config(yscrollcommand=scrollsymp.set)
+
+    quote = """Medical Health Monitoring System."""
+    textfield.insert(tk.END, quote)
+    #----------------------------end-----------------------------------
+
+#---------------btnFunctionsEnd------------------------------------------
+
 def Menus():
     menu = tk.Menu(root)
     root.config(menu=menu)
