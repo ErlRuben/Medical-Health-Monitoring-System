@@ -9,7 +9,7 @@ root = tk.Tk()
 root.resizable(False, False)
 time1 = ''
 root.title("M.H.M.S App")
-root.iconbitmap("APP_IMAGES\LOGO_ICONS\Icon.ico")
+root.iconbitmap("CS APP\APP_IMAGES\LOGO_ICONS\Icon.ico")
 root.unbind_class("Button", "<Key-space>")
 # def main_account_screen():
 #     global main_screen
@@ -24,15 +24,15 @@ canvas.create_window(520,450,window=line)
 canvas1 = tk.Canvas(root, width="230",height="230",relief = tk.FLAT, background = "#55B9B3")
 canvas.create_window(520,370,window=canvas1)
 
-img4 = ImageTk.PhotoImage(Image.open("APP_IMAGES\LOGO_ICONS\CONNECTING_CIRCLE.png")) 
+img4 = ImageTk.PhotoImage(Image.open("CS APP\APP_IMAGES\LOGO_ICONS\CONNECTING_CIRCLE.png")) 
 canvas.create_image(-320, 158, anchor=tk.NW, image=img4) 
-img2 = ImageTk.PhotoImage(Image.open("APP_IMAGES\LOGO_ICONS\dna.png")) 
+img2 = ImageTk.PhotoImage(Image.open("CS APP\APP_IMAGES\LOGO_ICONS\dna.png")) 
 canvas.create_image(825, -128, anchor=tk.NW, image=img2) 
-img3 = ImageTk.PhotoImage(Image.open("APP_IMAGES\LOGO_ICONS\dna.png")) 
+img3 = ImageTk.PhotoImage(Image.open("CS APP\APP_IMAGES\LOGO_ICONS\dna.png")) 
 canvas.create_image(-220, -128, anchor=tk.NW, image=img3) 
-img = ImageTk.PhotoImage(Image.open("APP_IMAGES\login_images\HMS_TOPPANEL_LOGIN.png"))  
+img = ImageTk.PhotoImage(Image.open("CS APP\APP_IMAGES\login_images\HMS_TOPPANEL_LOGIN.png"))  
 canvas.create_image(20, 20, anchor=tk.NW, image=img) 
-img1 = ImageTk.PhotoImage(Image.open("APP_IMAGES\LOGO_ICONS\logohead.png")) 
+img1 = ImageTk.PhotoImage(Image.open("CS APP\APP_IMAGES\LOGO_ICONS\logohead.png")) 
 canvas.create_image(470, 170, anchor=tk.NW, image=img1) 
 #--------------------------login/Functions----------------------------
 def registerbtn():
@@ -66,8 +66,8 @@ def logincommand():
     global logincommand
     z = username.get()
     x = password.get()
-    logusn = open('registered_usn.txt','r')
-    logpas = open('registered_pas.txt','r')
+    logusn = open('CS APP/registered_usn.txt','r')
+    logpas = open('CS APP/registered_pas.txt','r')
     logusnline = logusn.readline() 
     logpasline = logpas.readline() 
     stripusn = logusnline.split(" ")
@@ -133,8 +133,8 @@ def registercommand():
         return
     else:
         if c == c and v == v:
-            readusn = open('registered_usn.txt','r')
-            readpas = open('registered_pas.txt','r')
+            readusn = open('CS APP/registered_usn.txt','r')
+            readpas = open('CS APP/registered_pas.txt','r')
             readusnline = readusn.readline() 
             readpasline = readpas.readline() 
             stripusnread = readusnline.split(" ")
@@ -148,8 +148,8 @@ def registercommand():
                 return
             else:
                 if len(v) == 4:
-                    regusn = open('registered_usn.txt','a+')
-                    regpas = open('registered_pas.txt','a+')
+                    regusn = open('CS APP/registered_usn.txt','a+')
+                    regpas = open('CS APP/registered_pas.txt','a+')
                     regusn.write(c + " ")
                     regpas.write(v + " ")
                     regusn.close()
