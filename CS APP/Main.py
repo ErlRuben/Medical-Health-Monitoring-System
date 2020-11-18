@@ -263,16 +263,22 @@ def show_sick():
 
 
 #---------------btnFunctionsStart------------------------------------------
-def search_command2():
-    x = searchsick.get().lower()
-    textfield.delete(0, 'end')
+# def search_command2():
+#     x = str(searchsick.get())
+#     textfield.delete(0, 'end')
 
-    if x:
-        findsick = open('CS APP/sickness.txt','r')
-        findsickline = findsick.read()
-        for word in findsickline:
-            if word.startswith(x):
-                textfield.insert('end', word)
+#     if x:
+#         findsick = open('CS APP/sickness.txt','r')
+#         findsickline = findsick.read()
+#         for word in findsickline:
+#             if word.startswith(x):
+#                 textfield.insert('end', word)
+def search_command():    
+    gettype = str(searchsick.get())
+
+    searchsickopen = open('CS APP/sickness.txt','r')
+    searchsickline = searchsickopen.read()
+    searchstring = str(searchsickline)
 def Search():
     global textfield
     global searchsick
@@ -281,18 +287,14 @@ def Search():
 
 #-----------------searchtype start---------------------
     searchsick = tk.Entry(root)
-    binds = searchsick
-    binds.bind('<KeyRelease>', search_command2)
     canvapp.create_window(710,330,window=searchsick)
 #-----------------searchtype end---------------------
 
-
     searchbtn = tk.Button(root, text ="search", command = "", font=('times', 7, 'bold'))
-    canvas.create_window(705,88,window=searchbtn)
-    
+    canvas.create_window(705,88,window=searchbtn) 
 
-    textfield = tk.Listbox(root, height=28, width=123)
-    canvapp.create_window(710,570,window=textfield)
+    textfield = tk.Listbox(root, height=30, width=123)
+    canvapp.create_window(710,584,window=textfield)
 
     #----------------this part read and show output--------------------
     quote = """M.H.M.S Search Symptoms."""
