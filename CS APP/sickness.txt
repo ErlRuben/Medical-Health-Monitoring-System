@@ -1,2 +1,6 @@
-covid- (tiredness , fever ,  cough) 'pandemic in 2020'
-tite - (supot)
+Covid- (Tiredness , Fever ,  Cough) 
+'a wide range of symptoms reported – ranging from mild symptoms to severe illness.'
+Fever - (Sweating, Dehydration, Headache) 'You have a fever when your temperature rises above its normal range. What's normal for you may be a little higher or lower than the average normal temperature of 98.6 F (37 C)'
+Cramps - (Nerve compression, Too little potassium, Inadequate blood supply) ' Most muscle cramps develop in the leg muscles, particularly in the calf. Besides the sudden, sharp pain, you might also feel or see a hard lump of muscle tissue beneath your skin. '
+Stomach ache - (Constipation, Diarrhea, Fart) 'a term often used to refer to cramps or a dull ache in the tummy (abdomen). It's usually short-lived and is often not serious.'
+Headache - ()
