@@ -197,13 +197,12 @@ def main_ui():
 #------------------------NOT YET WORKING(ADMIN ADD DELETE)---------------------------------------
 
 def save_button():
-    global readsickadddel
-    entries = textfieldsyadminadddel.get()
-    readsickadddel = open('CS APP/sickness.txt','a+')
-    readsickadddel.write(entries)
-    readsickadddel.close()
-    ctypes.windll.user32.MessageBoxW(0, "Done, Changes Saved!", "ADD", 0)
-    return
+    text = textfieldsyadminadddel.get("1.0",'end-1c')
+    with open("CS APP/sickness.txt", "w") as outf:
+        outf.write(text)
+        ctypes.windll.user32.MessageBoxW(0, "Done, Changes Saved!", "ADD", 0)
+
+
 def add_delete_sick():
     global textfieldsyadminadddel
     canvasadminadddel = tk.Canvas(root, width="750",height="570",relief = tk.FLAT, background="#C8EBE9")
@@ -215,10 +214,13 @@ def add_delete_sick():
 
 
     scrolladminadddel = tk.Scrollbar(root)
+    readsickshow = open('CS APP/sickness.txt','r')
+    readsicknesshow = readsickshow.read() 
     textfieldsyadminadddel = tk.Text(root, height=23, width=92)
     canvasadminadddel.create_window(377,315,window=scrolladminadddel)
     canvasadminadddel.create_window(377,315,window=textfieldsyadminadddel)
     scrolladminadddel.config(command=textfieldsyadminadddel.yview)
+    textfieldsyadminadddel.insert(tk.END, readsicknesshow)
     textfieldsyadminadddel.config(yscrollcommand=scrolladminadddel.set)
 
     textfieldsyadminadddell = tk.Text(root, height=5, width=92)
@@ -306,8 +308,8 @@ def Search():
 
 #-----------------searchtype start---------------------
     searchsick = tk.Entry(root)
-    bind = searchsick
-    bind.bind('<KeyRelease>', search_command2)
+    binds = searchsick
+    binds.bind('<KeyRelease>', search_command2)
     canvapp.create_window(710,330,window=searchsick)
 #-----------------searchtype end---------------------
 
