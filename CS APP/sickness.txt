@@ -1,0 +1,3 @@
+covid- (tiredness , fever ,  cough) 'pandemic in 2020'
+cancer- (bloating, cough, skin) 'deadly disease'
+uti- (tiredness, pain , blood) 'pain in peeing'
