@@ -303,13 +303,18 @@ def check():
         for line in findsplit:
             if line in finding:
                 # ctypes.windll.user32.MessageBoxW(0, "working", "test", 4)
-                textfind = datafile.replace("tiredness fever cough - ", "")
-                textfindd = textfind.replace(".", "\n\n")
+                textfindd = datafile.replace(".", "\n\n")
                 textfinddd = textfindd.replace("/", "\n")
                 textshow = textfinddd.upper()
                 textfield.insert(tk.END, textshow)
                 return True
-        
+            elif line not in finding:
+                # ctypes.windll.user32.MessageBoxW(0, "working", "test", 4)
+                textfindd = datafile.replace(".", "\n\n")
+                textfinddd = textfindd.replace("/", "\n")
+                textshow = textfinddd.upper()
+                textfield.insert(tk.END, textshow)
+                return True
             
             # elif line not in finding:
             #     textfind = datafile.replace("tiredness fever cough - ", "")
