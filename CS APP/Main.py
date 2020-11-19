@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog, Text
-from tkinter.constants import DISABLED
+from tkinter.constants import DISABLED, END
 from PIL import ImageTk,Image 
 from datetime import datetime
 import ctypes 
@@ -263,22 +263,51 @@ def show_sick():
 
 
 #---------------btnFunctionsStart------------------------------------------
+
+# def search_command():  
+#     gettype = searchsick.get()
+
+#     searchsickopen = open('CS APP/sickness.txt','r')
+#     searchsickline = searchsickopen.readlines()
+#     # searchstring = searchsickline.split(" ")
+#     if gettype in searchsickline:
+#         ctypes.windll.user32.MessageBoxW(0, "working", "test", 4)
+#     else:
+#         ctypes.windll.user32.MessageBoxW(0, "not working", "test", 4)
+
+
 # def search_command2():
-#     x = str(searchsick.get())
+#     x = searchsick.get()
 #     textfield.delete(0, 'end')
 
 #     if x:
 #         findsick = open('CS APP/sickness.txt','r')
-#         findsickline = findsick.read()
-#         for word in findsickline:
-#             if word.startswith(x):
-#                 textfield.insert('end', word)
-def search_command():    
-    gettype = str(searchsick.get())
+#         findsickline = findsick.readline()
+#         findline = findsickline.split(" ")
+#         for word in findline:
+#             if x.startswith(word):
+#                 print(x)
+                # textfield.insert('end', word)
+def check():
+    textfield.delete("1.0", "end")
+    finding = searchsick.get()
 
-    searchsickopen = open('CS APP/sickness.txt','r')
-    searchsickline = searchsickopen.read()
-    searchstring = str(searchsickline)
+    with open('CS APP/sickness.txt', 'r') as f:
+        datafile = f.read()
+        findsplit = datafile.split(" ")
+    for line in findsplit:
+        if line in finding:
+            # ctypes.windll.user32.MessageBoxW(0, "working", "test", 4)
+            textfind = datafile.replace("tiredness fever cough - ", "")
+            textshow = textfind.upper()
+            textfield.insert(tk.END, textshow)
+            return True
+        elif line not in finding:
+            textfind = datafile.replace("tiredness fever cough - ", "")
+            textshow = textfind.upper()
+            textfield.insert(tk.END, textshow)
+            return True
+
 def Search():
     global textfield
     global searchsick
@@ -290,18 +319,22 @@ def Search():
     canvapp.create_window(710,330,window=searchsick)
 #-----------------searchtype end---------------------
 
-    searchbtn = tk.Button(root, text ="search", command = "", font=('times', 7, 'bold'))
+    searchbtn = tk.Button(root, text ="search", command = check, font=('times', 7, 'bold'))
     canvas.create_window(705,88,window=searchbtn) 
+    searchbtn = tk.Button(root, text =" clear ", command = delete_text, font=('times', 7, 'bold'))
+    canvas.create_window(740,88,window=searchbtn) 
 
-    textfield = tk.Listbox(root, height=30, width=123)
-    canvapp.create_window(710,584,window=textfield)
+
+    textfield = tk.Text(root, height=30, width=92)
+    canvapp.create_window(710,590,window=textfield)
+    textfield.bind("<Key>", lambda e: "break")
 
     #----------------this part read and show output--------------------
-    quote = """M.H.M.S Search Symptoms."""
-    textfield.insert(tk.END, quote)
-    textfield.config(state=DISABLED)
 
     #----------------------------end-----------------------------------
+def delete_text():
+    textfield.delete("1.0", "end")
+
 def Symptoms():
     canvappsymp = tk.Canvas(root, width="750",height="570",relief = tk.FLAT, background="#C8EBE9")
     canvapp.create_window(710,545,window=canvappsymp)
@@ -475,7 +508,7 @@ def add_delete_sick_employee():
     textfieldsyemployadddell = tk.Text(root, height=5, width=92)
     canvasemployeeui.create_window(377,80,window=textfieldsyemployadddell)
     quotee = """M.H.M.S Add/Delete Sickness (Follow the Format)."""
-    showreadd = quotee + "\n" + "Sickness_Name - (1stSymptom, 2nd, 3rd, 4th) 'Definition'"
+    showreadd = quotee + "\n" + "Sickness_Name '1stSymptom, 2nd, 3rd, 4th. Definition'"
     textfieldsyemployadddell.insert(tk.END, showreadd)
     textfieldsyemployadddell.config(state=DISABLED)
 
