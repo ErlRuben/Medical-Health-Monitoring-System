@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog, Text
-from tkinter.constants import DISABLED, END
+from tkinter.constants import DISABLED, END, TRUE
 from PIL import ImageTk,Image 
 from datetime import datetime
 import ctypes 
@@ -291,22 +291,31 @@ def show_sick():
 def check():
     textfield.delete("1.0", "end")
     finding = searchsick.get()
+    if finding == " ":
+        textfield.insert(tk.END, "No Input or No Symptoms in library")
+    elif finding == "":
+        textfield.insert(tk.END, "No Input")
 
-    with open('CS APP/sickness.txt', 'r') as f:
-        datafile = f.read()
-        findsplit = datafile.split(" ")
-    for line in findsplit:
-        if line in finding:
-            # ctypes.windll.user32.MessageBoxW(0, "working", "test", 4)
-            textfind = datafile.replace("tiredness fever cough - ", "")
-            textshow = textfind.upper()
-            textfield.insert(tk.END, textshow)
-            return True
-        elif line not in finding:
-            textfind = datafile.replace("tiredness fever cough - ", "")
-            textshow = textfind.upper()
-            textfield.insert(tk.END, textshow)
-            return True
+    else:
+        with open('CS APP/sickness.txt', 'r') as f:
+            datafile = f.read()
+            findsplit = datafile.split(" ")
+        for line in findsplit:
+            if line in finding:
+                # ctypes.windll.user32.MessageBoxW(0, "working", "test", 4)
+                textfind = datafile.replace("tiredness fever cough - ", "")
+                textfindd = textfind.replace(".", "\n\n")
+                textfinddd = textfindd.replace("/", "\n")
+                textshow = textfinddd.upper()
+                textfield.insert(tk.END, textshow)
+                return True
+        
+            
+            # elif line not in finding:
+            #     textfind = datafile.replace("tiredness fever cough - ", "")
+            #     textshow = textfind.upper()
+            #     textfield.insert(tk.END, textshow)
+            #     return True
 
 def Search():
     global textfield
