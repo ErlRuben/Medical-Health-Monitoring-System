@@ -321,7 +321,8 @@ def check():
             #     textfield.insert(tk.END, textshow)
             #     return True
 def fake():
-    finding = searchsick.get()
+    textfield.delete("1.0", "end")
+    finding = searchsick.get()  
     if finding in ["tiredness", "cough"]:
         textfield.insert(tk.END, "Covid a wide range of symptoms reported ranging from mild symptoms to severe illness, Stay at home and call a doctor to go in your house.")
     elif finding in ["sweating", "dehydration", "headache"]:
@@ -331,10 +332,9 @@ def fake():
     elif finding in ["constipation", "diarrhea", "fart"]:
         textfield.insert(tk.END, "Stomach ache, term often used to refer to cramps or a dull ache in the tummy, Place a heated cloth on your abdomen, Soak in a warm bath, Stay Hydrated, Get plenty of rest.")
     elif finding in ["fever"]:
-        textfield.insert(tk.END, "Fever, a fever when your temperature rises above its normal range, Stay Hydrated, take Meds for Fever consult an adult or doctor.")
-        textfield.insert(tk.END, "Covid a wide range of symptoms reported ranging from mild symptoms to severe illness, Stay at home and call a doctor to go in your house.")
-
+        textfield.insert(tk.END, "Fever, a fever when your temperature rises above its normal range, Stay Hydrated, take Meds for Fever consult an adult or doctor.\n\nCovid a wide range of symptoms reported ranging from mild symptoms to severe illness, Stay at home and call a doctor to go in your house.")
     else:
+        ctypes.windll.user32.MessageBoxW(0, "Symptom not in Library", "Message", 4)
         return fake
 def Search():
     global textfield
