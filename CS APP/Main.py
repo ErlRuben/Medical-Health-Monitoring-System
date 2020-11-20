@@ -295,8 +295,7 @@ def check():
         textfield.insert(tk.END, "No Input or No Symptoms in library")
     elif finding == "":
         textfield.insert(tk.END, "No Input")
-
-    else:
+    elif finding:
         with open('CS APP/sickness.txt', 'r') as f:
             datafile = f.read()
             findsplit = datafile.split(" ")
@@ -321,7 +320,22 @@ def check():
             #     textshow = textfind.upper()
             #     textfield.insert(tk.END, textshow)
             #     return True
+def fake():
+    finding = searchsick.get()
+    if finding in ["tiredness", "cough"]:
+        textfield.insert(tk.END, "Covid a wide range of symptoms reported ranging from mild symptoms to severe illness, Stay at home and call a doctor to go in your house.")
+    elif finding in ["sweating", "dehydration", "headache"]:
+        textfield.insert(tk.END, "Fever, a fever when your temperature rises above its normal range, Stay Hydrated, take Meds for Fever consult an adult or doctor.")
+    elif finding in ["pain", "body", "stiff"]:
+        textfield.insert(tk.END, "Cramps, most muscle cramps develop in the leg muscles, particularly in the calf, Stretch the cramped muscle and gently rub it to help it relax, Apply heat or cold.")
+    elif finding in ["constipation", "diarrhea", "fart"]:
+        textfield.insert(tk.END, "Stomach ache, term often used to refer to cramps or a dull ache in the tummy, Place a heated cloth on your abdomen, Soak in a warm bath, Stay Hydrated, Get plenty of rest.")
+    elif finding in ["fever"]:
+        textfield.insert(tk.END, "Fever, a fever when your temperature rises above its normal range, Stay Hydrated, take Meds for Fever consult an adult or doctor.")
+        textfield.insert(tk.END, "Covid a wide range of symptoms reported ranging from mild symptoms to severe illness, Stay at home and call a doctor to go in your house.")
 
+    else:
+        return fake
 def Search():
     global textfield
     global searchsick
@@ -333,7 +347,7 @@ def Search():
     canvapp.create_window(710,330,window=searchsick)
 #-----------------searchtype end---------------------
 
-    searchbtn = tk.Button(root, text ="search", command = check, font=('times', 7, 'bold'))
+    searchbtn = tk.Button(root, text ="search", command = fake, font=('times', 7, 'bold'))
     canvas.create_window(705,88,window=searchbtn) 
     searchbtn = tk.Button(root, text =" clear ", command = delete_text, font=('times', 7, 'bold'))
     canvas.create_window(740,88,window=searchbtn) 
